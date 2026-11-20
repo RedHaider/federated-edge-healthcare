@@ -3,6 +3,7 @@ import numpy as np
 from edge_health.data import make_clients
 from edge_health.experiment import evaluate
 from edge_health.federated import train_fedavg
+from edge_health.heavy_experiment import run
 
 
 def test_client_generation_is_reproducible():
@@ -25,3 +26,10 @@ def test_report_metrics_are_valid():
     assert 0 <= report["centralized"]["accuracy"] <= 1
     assert len(report["per_client_federated"]) == 5
     assert len(history) == 20
+
+
+def test_heavy_benchmark_is_complete():
+    rows, report = run()
+    assert len(rows) == 10
+    assert report["protocol"]["clients"] == 8
+    assert report["primary_comparison"]["relative_reduction"] > 0.5

@@ -1,4 +1,4 @@
-# Federated Edge Health Lite
+# Federated Edge Health: Communication-Efficient Benchmark
 
 An original, privacy-safe portfolio benchmark exploring distributed machine
 learning for edge healthcare.
@@ -40,3 +40,30 @@ in proportion to site sample count. Test data remain local to each site.
 The model is intentionally small and educational. It does not provide secure
 aggregation, differential privacy, network-failure simulation, or medical
 validity. These are clear extensions for a research-grade version.
+
+## Heavy benchmark
+
+The expanded benchmark evaluates eight non-IID healthcare sites across five
+independent seeds. It compares full-precision FedAvg with a proximal,
+loss-aware aggregation method using signed int8 update quantization and 20%
+simulated client dropout. The report includes mean and worst-client AUROC,
+client disparity, Brier score, transmitted bytes, and 95% confidence intervals.
+
+```powershell
+python -m edge_health.heavy_experiment --output outputs/heavy
+```
+
+The communication and performance claims apply only to this synthetic
+simulation. The project does not reproduce or improve a professor's published
+system, implement real networking, or provide clinical validation.
+
+### Verified result
+
+Across five seeds, signed-int8 quantization plus simulated client dropout
+reduced transmitted update bytes from **26,880** to **2,149** per run, a
+**92.0% reduction**. Mean client AUROC was retained (0.83526 vs 0.83549), as
+were worst-client AUROC (0.77390 vs 0.77416) and the client AUROC gap (0.11056
+vs 0.11051). These tiny performance differences are not presented as accuracy
+or fairness improvements; the supported claim is communication reduction
+without material degradation in this simulation. Full confidence intervals
+are in `results/heavy_metrics.csv`.

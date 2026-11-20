@@ -1,0 +1,11 @@
+model,metric,mean,ci95_low,ci95_high
+fedavg_float64,mean_client_auroc,0.835257,0.824779,0.845736
+fedavg_float64,worst_client_auroc,0.773901,0.748203,0.799599
+fedavg_float64,client_auroc_gap,0.110558,0.088083,0.133033
+fedavg_float64,mean_client_brier,0.162676,0.157640,0.167712
+fedavg_float64,communication_bytes,26880.0,26880.0,26880.0
+prox_quantized,mean_client_auroc,0.835487,0.825254,0.845720
+prox_quantized,worst_client_auroc,0.774165,0.749563,0.798767
+prox_quantized,client_auroc_gap,0.110510,0.088539,0.132480
+prox_quantized,mean_client_brier,0.162703,0.157577,0.167830
+prox_quantized,communication_bytes,2149.4,2108.2,2190.6
